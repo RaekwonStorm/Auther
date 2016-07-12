@@ -1,8 +1,9 @@
-app.factory('Login', function($http){
+app.factory('LoginFactory', function($http){
 
 	return {
-		LoginFunc: function(userData){
-			return $http.post('/api/users/login', {username: userData.username, password: userData.password})
+		LoginFunc: function(username, password){
+      console.log(username, password);
+			return $http.post('/api/users/login', {email: username, password: password})
 			}
 	}
 });

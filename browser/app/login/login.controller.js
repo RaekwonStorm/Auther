@@ -1,10 +1,5 @@
-app.controller('loginController', function($scope, Login){
+app.controller('loginController', function($scope, LoginFactory) {
 
-
-var userDataObj = {username: $scope.username, 
-			   password: $scope.password}
-
-
-$scope.loginFunc = Login.LoginFunc(userDataObj);			   
+    $scope.loginFunc = LoginFactory.LoginFunc;
 
 })
