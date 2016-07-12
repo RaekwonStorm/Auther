@@ -5,7 +5,8 @@ var path = require('path');
 var session = require('express-session');
 
 app.use(session({
-  secret: 'reediskewl'
+  secret: 'reediskewl',
+  duration: 2000
 }))
 
 app.use(function (req, res, next) {

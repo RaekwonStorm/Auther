@@ -57,14 +57,18 @@ router.delete('/:id', function (req, res, next) {
 });
 
 router.post('/login', function (req, res, next) {
+  console.log("in login post route")
   User.findOne({
     where: req.body
   })
   .then(function (user) {
     if (!user) {
       res.sendStatus(401);
+      console.log("user does not exist")
     } else {
+    console.log("user is found")
     req.session.userId = user.id;
+    req.session.cookie.expires = new Date(Date.now() + (1000*60*20))
     res.sendStatus(204);
     }
   })
