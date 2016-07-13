@@ -75,4 +75,32 @@ router.post('/login', function (req, res, next) {
   .catch(next);
 });
 
+router.post('/signup', function (req, res, next) {
+  console.log("in signup post route")
+  User.findOne({
+    where: req.body
+  })
+  .then(function (user) {
+    if (user) {
+      res.sendStatus(409);
+    } else {
+      User.create(req.body)
+      .then(function (user) {
+        console.log("user ", req.body, " was created");
+        req.session.userId = user.id;
+        req.session.cookie.expires = new Date(Date.now() + (1000*60*20))
+        res.sendStatus(204);
+      });
+    }
+  })
+  .catch(next);
+});
+
+router.post('/logout', function (req, res, next) {
+  console.log("You did it!")
+  // req.session.userId = null;
+  // req.session.destroy(function (err) {console.error(err)});
+  // delete req.session.userId;
+})
+
 module.exports = router;

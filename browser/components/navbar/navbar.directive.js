@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('navbar', function ($state, $location) {
+app.directive('navbar', function ($state, $location, LoginFactory) {
   return {
     restrict: 'E',
     templateUrl: '/browser/components/navbar/navbar.html',
