@@ -97,7 +97,10 @@ router.post('/signup', function (req, res, next) {
 });
 
 router.post('/logout', function (req, res, next) {
-  console.log("You did it!")
+    console.log("in logout route");
+    req.session.cookie.expires = new Date(Date.now() + 1);
+    console.log("Done with logout route")
+    res.sendStatus(204);
   // req.session.userId = null;
   // req.session.destroy(function (err) {console.error(err)});
   // delete req.session.userId;
